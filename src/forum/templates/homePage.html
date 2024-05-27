@@ -3,7 +3,15 @@
         <title>Forum</title>
     </head>
     <body>
-        Home Mikä Home
-        {{username}}
+        <h1>Forum</h1>
+        {% if username %}
+            <p>Logged in as {{username}}</p>
+        {% else %}
+            <a href="/login">login</a>
+        {% endif %}
+        <a href="/create">New Thread</a>
+        {% for thread in threads %}
+            <a href="/thread/{{thread.0}}">{{thread.1}}</a>
+        {% endfor %}
     </body>
 </htlm>

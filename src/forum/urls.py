@@ -4,7 +4,10 @@ from . import views
 
 urlpatterns = [
     path("", views.homePageView, name="homePage"),
-    path("thread", views.threadView, name="thread"),
+    path("thread/<str:id>", views.threadView, name="thread"),
     path("login", views.loginView, name="login"),
-    path("loginHandle", views.handleLogin, name="loginHandle")
+    path("loginHandle", views.handleLogin, name="loginHandle"),
+    path("create", views.createView, name="create"),
+    path("createHandle", views.handleCreate, name="createHandle"),
+    path("createMsg", views.handleMsg, name="createMessage")
 ]
