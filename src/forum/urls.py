@@ -9,5 +9,7 @@ urlpatterns = [
     path("loginHandle", views.handleLogin, name="loginHandle"),
     path("create", views.createView, name="create"),
     path("createHandle", views.handleCreate, name="createHandle"),
-    path("createMsg", views.handleMsg, name="createMessage")
+    path("createMsg", views.handleMsg, name="createMessage"),
+    path("logout", views.logoutHandle, name="logout"),
+    path("deleteThread/<str:id>", views.threadDeletionHandle, name="deleteThread"),
 ]

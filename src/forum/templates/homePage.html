@@ -6,6 +6,7 @@
         <h1>Forum</h1>
         {% if username %}
             <p>Logged in as {{username}}</p>
+            <a href="/logout">logout</a>
         {% else %}
             <a href="/login">login</a>
         {% endif %}
