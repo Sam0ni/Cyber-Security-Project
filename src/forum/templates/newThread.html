@@ -3,6 +3,7 @@
     <body>
         <h1>Create New Thread</h1>
         <form action="/createHandle" method="POST">
+            {% csrf_token %}
             <p>Title:<input type="text" name="title"/></p>
             <p>Message:<input type="text" name="msg"/></p>
             <input type="submit">

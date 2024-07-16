@@ -2,6 +2,7 @@
     <head><title>Login</title></head>
     <body>
         <form action="/loginHandle" method="POST">
+            {% csrf_token %}
             <input type="text" name="username"/>
             <input type="text" name="password"/>
             <input type="submit">
