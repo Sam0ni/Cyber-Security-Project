@@ -35,9 +35,9 @@ def handleCreate(request):
     except:
         return redirect(homePageView)
     #replace the following 3 lines with "Thread.objects.create(title=title, msg=msg, user=user)" to fix sql injection vulnerability
-    query = f"INSERT INTO forum_thread (title, msg, user_id) VALUES ('{title}', '{msg}', '{user.id}')"
+    query = f"INSERT INTO forum_thread (title, user_id, msg) VALUES ('{title}', '{user.id}', '{msg}')"
     with connection.cursor() as cursor:
-        cursor.execute(query)
+        cursor.executescript(query)
     return redirect(homePageView)
 
 #remove @csrf_exempt to fix csrf vulnerability
