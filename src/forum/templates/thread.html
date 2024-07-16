@@ -13,6 +13,7 @@
         <p>{{message.1}}</p>
         {% endfor %}
         <form action="/createMsg" method="POST">
+            {% csrf_token %}
             <p>New Message:<input type="text" name="message"/></p>
             <input type="hidden" name="id" value={{id}}>
             <input type="submit">
