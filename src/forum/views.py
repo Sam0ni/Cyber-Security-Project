@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import ForumUser, Thread, Message
 from django.views.decorators.csrf import csrf_exempt
 from django.db import connection
+#from django.contrib.auth.models import User
 
 #remove @csrf_exempt to fix csrf vulnerability
 @csrf_exempt
@@ -10,16 +11,20 @@ def handleLogin(request):
     reqpass = request.POST.get("password")
     try:
         user = ForumUser.objects.get(username=requser)
+        # user = User.objects.get(username=requser)
     except:
         user = None
     if user:
         if user.password == reqpass:
             request.session["username"] = requser
             request.session["password"] = reqpass
+            #delete previous line
     else:
         new_user = ForumUser.objects.create(username=requser, password=reqpass)
+        #new_user = User.objects.create_user(username=requser, password=reqpass)
         request.session["username"] = requser
         request.session["password"] = reqpass
+        #delete previous line to not store password in session
     return redirect(homePageView)
 #replace ForumUser model with django inbuilt User model, which hashes the passwords
 
@@ -32,6 +37,7 @@ def handleCreate(request):
         if request.session["username"]:
             user = request.session["username"]
             user = ForumUser.objects.get(username=user)
+            #user = User.objects.get(username=user)
     except:
         return redirect(homePageView)
     #replace the following 3 lines with "Thread.objects.create(title=title, msg=msg, user=user)" to fix sql injection vulnerability
@@ -49,6 +55,7 @@ def handleMsg(request):
         if request.session["username"]:
             user = request.session["username"]
             user = ForumUser.objects.get(username=user)
+            #user = User.objects.get(username=user)
     except:
         return redirect(homePageView)
     thread = Thread.objects.get(id=id)
